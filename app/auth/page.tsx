@@ -9,7 +9,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { AuthForm } from "./auth-form";
 
-export default async function AuthPage() {
+export default async function AuthPage(props: { params: Promise<{}> }) {
   const user = await getRequiredUser();
   const accounts = await auth.api.listUserAccounts({
     headers: await headers(),
