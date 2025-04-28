@@ -69,7 +69,7 @@ jobs:
         run: pnpm install
         env:
           CI: true
-      - name: Run TypeScript check
-        run: pnpm vitest:ci
+      - name: Run tests
+        run: pnpm test:ci
         env:
           CI: true
