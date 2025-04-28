@@ -119,7 +119,7 @@ export default function SignUpPage() {
           <span className="text-muted-foreground text-xs">Or</span>
         </div>
 
-        <div className="flex items-center gap-2 justify-">
+        <div className="flex items-center gap-2 flex-col @sm:flex-row">
           <SignInWithGitHub />
           <SignInWithGoogle />
         </div>
