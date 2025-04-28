@@ -3,13 +3,12 @@ import { getRequiredUser } from "@/lib/auth-session";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
-interface FilePageProps {
-  params: {
+export default async function FilePage(props: {
+  params: Promise<{
     fileId: string;
-  };
-}
-
-export default async function FilePage({ params }: FilePageProps) {
+  }>;
+}) {
+  const params = await props.params;
   const user = await getRequiredUser();
 
   const file = await prisma.item.findUnique({
