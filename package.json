@@ -11,7 +11,9 @@
     "vercel-build": "prisma generate && next build && prisma migrate deploy",
     "ts": "tsc",
     "prisma:seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts",
-    "lint:ci": "next lint"
+    "lint:ci": "next lint",
+    "test": "vitest",
+    "test:ci": "vitest run"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -56,15 +58,21 @@
     "@eslint/eslintrc": "^3",
     "@faker-js/faker": "^8.4.1",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.3.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.2.1-canary.5",
+    "jsdom": "^26.1.0",
     "prisma": "6.6.0",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.1.2"
   },
   "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
 }

@@ -4,16 +4,17 @@ import { useMutation } from "@tanstack/react-query";
 import { FileIcon, UploadIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
-import { uploadFileAction } from "./files/upload.action";
 
 interface UploadDropzoneProps {
-  onClientUploadComplete?: (res: { id: string; fileUrl: string }) => void;
+  onClientUploadComplete?: () => void;
   onUploadError?: (error: Error) => void;
+  uploadFile: (file: File) => Promise<string | null | undefined>;
 }
 
 export function UploadDropzone({
   onClientUploadComplete,
   onUploadError,
+  uploadFile,
 }: UploadDropzoneProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -24,17 +25,17 @@ export function UploadDropzone({
       const formData = new FormData();
       formData.append("file", file);
 
-      const result = await uploadFileAction(formData);
+      const result = await uploadFile(file);
 
-      if (!result?.data) {
+      if (!result) {
         throw new Error("Upload failed");
       }
 
-      return result.data;
+      return result;
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       if (onClientUploadComplete) {
-        onClientUploadComplete(data);
+        onClientUploadComplete();
       }
     },
     onError: (error) => {

@@ -13,6 +13,7 @@ import { UploadDropzone } from "@/components/upload-dropzone";
 import { UploadIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { uploadFileAction } from "./upload.action";
 
 export function UploadButton() {
   const [open, setOpen] = useState(false);
@@ -35,6 +36,12 @@ export function UploadButton() {
         </DialogHeader>
         <div className="space-y-4 py-4">
           <UploadDropzone
+            uploadFile={async (file) => {
+              const formData = new FormData();
+              formData.append("file", file);
+              const result = await uploadFileAction(formData);
+              return result?.data?.fileUrl;
+            }}
             onClientUploadComplete={() => {
               setOpen(false);
               router.refresh();
