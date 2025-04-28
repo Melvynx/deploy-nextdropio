@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { auth } from "@/lib/auth";
 import { getRequiredUser, getUser } from "@/lib/auth-session";
+import { getServerUrl } from "@/lib/get-server-url";
 import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
@@ -53,7 +54,7 @@ export default async function AuthPage() {
                 const billingPortal =
                   await stripe.billingPortal.sessions.create({
                     customer: stripeCustomerId,
-                    return_url: "http://localhost:3000/auth",
+                    return_url: `${getServerUrl()}/auth`,
                   });
 
                 if (!billingPortal.url) {

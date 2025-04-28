@@ -1,5 +1,6 @@
 "use server";
 
+import { getServerUrl } from "@/lib/get-server-url";
 import { prisma } from "@/lib/prisma";
 import { userAction } from "@/lib/safe-action";
 import { stripe } from "@/lib/stripe";
@@ -44,8 +45,8 @@ export const upgradePlan = userAction
         plan: plan.id,
       },
       mode: "subscription",
-      success_url: "http://localhost:3000/auth",
-      cancel_url: "http://localhost:3000/pricing",
+      success_url: `${getServerUrl()}/auth`,
+      cancel_url: `${getServerUrl()}/pricing`,
     });
 
     if (!stripeCheckout.url) {

@@ -26,6 +26,7 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { getLimitation } from "@/lib/auth-limitations";
+import { getServerUrl } from "@/lib/get-server-url";
 import { stripe } from "@/lib/stripe";
 
 // Helper to get file type icon
@@ -226,8 +227,10 @@ export default async function SharePage(props: {
                                 ((item.price ?? 0) * limitation.fees) / 100
                               ),
                             },
-                            success_url: `http://localhost:3000/share/${item.id}?session_id={CHECKOUT_SESSION_ID}`,
-                            cancel_url: `http://localhost:3000/share/${item.id}`,
+                            success_url: `${getServerUrl()}/share/${
+                              item.id
+                            }?session_id={CHECKOUT_SESSION_ID}`,
+                            cancel_url: `${getServerUrl()}/share/${item.id}`,
                           },
                           {
                             stripeAccount: stripeAccountId ?? "",
