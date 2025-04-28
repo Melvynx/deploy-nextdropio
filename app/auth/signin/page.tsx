@@ -127,7 +127,7 @@ export default function SignUpPage() {
         <p className="text-muted-foreground text-center text-xs">
           No account ?{" "}
           <Link className="text-indigo-500" href="/auth/signup">
-            Sing Up
+            Sign Up
           </Link>
         </p>
         <p className="text-muted-foreground text-center text-xs">
